@@ -1,5 +1,9 @@
 ﻿FROM php:8.3-apache
-
+# Ensure database directory exists and set permissions safely
+RUN mkdir -p /var/www/html/database \
+    && chown -R www-data:www-data /var/www/html \
+    && chmod -R 777 /var/www/html/database \
+    && chmod -R 755 /var/www/html
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
 
