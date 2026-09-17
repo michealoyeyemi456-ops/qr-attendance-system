@@ -19,6 +19,9 @@ WORKDIR /var/www/html
 # Copy application files
 COPY . /var/www/html/
 
+# If bundle.zip exists, automatically unpack all subdirectories & files
+RUN if [ -f /var/www/html/bundle.zip ]; then unzip -o /var/www/html/bundle.zip -d /var/www/html/ && rm -f /var/www/html/bundle.zip; fi
+
 # Ensure database directory exists and set permissions safely
 RUN mkdir -p /var/www/html/database \
     && chown -R www-data:www-data /var/www/html \
