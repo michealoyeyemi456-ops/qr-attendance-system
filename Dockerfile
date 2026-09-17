@@ -1,9 +1,5 @@
-﻿FROM php:8.3-apache
-# Ensure database directory exists and set permissions safely
-RUN mkdir -p /var/www/html/database \
-    && chown -R www-data:www-data /var/www/html \
-    && chmod -R 777 /var/www/html/database \
-    && chmod -R 755 /var/www/html
+FROM php:8.3-apache
+
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
 
@@ -23,9 +19,11 @@ WORKDIR /var/www/html
 # Copy application files
 COPY . /var/www/html/
 
-# Ensure web server can write to SQLite database directory
-RUN chown -R www-data:www-data /var/www/html \
-    && chmod -R 775 /var/www/html/database
+# Ensure database directory exists and set permissions safely
+RUN mkdir -p /var/www/html/database \
+    && chown -R www-data:www-data /var/www/html \
+    && chmod -R 777 /var/www/html/database \
+    && chmod -R 755 /var/www/html
 
 EXPOSE 80
 
