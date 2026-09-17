@@ -1,0 +1,28 @@
+# ==============================================================================
+# QR Attendance System Using MS SQL and Apache
+# Apache HTTP Server Configuration (.htaccess)
+# ==============================================================================
+
+# Enable Rewrite Engine
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Prevent directory listing
+    Options -Indexes
+
+    # Security: Block sensitive database files and configuration files
+    RewriteRule ^database/(.*)\.db$ - [F,L,NC]
+    RewriteRule ^database/(.*)\.sql$ - [F,L,NC]
+    RewriteRule ^config/(.*)\.php$ - [F,L,NC]
+</IfModule>
+
+# Security Headers
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "SAMEORIGIN"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Set Default Charset
+AddDefaultCharset UTF-8

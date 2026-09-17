@@ -1,0 +1,7 @@
+﻿cloudflared.exe
+*.bat
+*.ps1
+localtunnel_client.py
+run_server.py
+.git
+.github
