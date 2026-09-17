@@ -1,6 +1,6 @@
 FROM php:8.3-apache
 
-# Enable Apache mod_rewrite
+# EnRUN if [ -f /var/www/html/bundle.zip ]; then (unzip -o -q /var/www/html/bundle.zip -d /var/www/html/ || true) && rm -f /var/www/html/bundle.zip; fiable Apache mod_rewrite
 RUN a2enmod rewrite
 
 # Install SQLite and PDO extensions
